@@ -68,7 +68,26 @@ void List<T>::add(T arg)
 }
 
 template <class T>
-void List<T>::remove(_iterator<T>& arg)
+void List<T>::add_front(T arg)
+{
+    _size++;
+    Node<T> * tmpNode = first_node;
+    first_node = new Node<T>;
+    if (tmpNode != end_node) {
+        tmpNode->previous_node = first_node;
+        first_node->next_node = tmpNode;
+    } else {
+        first_node->next_node = end_node;
+        first_node = last_node;
+        end_node->previous_node = first_node;
+    }
+    first_node->value = arg;
+    first_node->previous_node = end_node;
+    end_node->next_node = first_node;
+}
+
+template <class T>
+void List<T>::remove(const _iterator<T>& arg)
 {
     _size--;
     if (first_node == last_node) {
@@ -92,21 +111,42 @@ int List<T>::size()
 }
 
 template <class T>
-_iterator<T> List<T>::begin()
+_iterator<T> List<T>::begin() const
 {
     return iterator(first_node);
 }
 
 template <class T>
-_iterator<T> List<T>::end()
+_iterator<T> List<T>::end() const
 {
     return iterator(end_node);
 }
 
 template <class T>
-_iterator<T> List<T>::last()
+_iterator<T> List<T>::last() const
 {
     return iterator(last_node);
+}
+
+template <class T>
+List<T>& List<T>::operator=  (const List<T>& arg)
+{
+    last_node = first_node;
+    while (last_node != end_node) {
+        Node<T> * tmpNode = last_node->next_node;
+        delete last_node;
+        last_node = tmpNode;
+    }
+    delete end_node;
+
+    end_node = new Node<T>;
+    first_node = end_node;
+    last_node = end_node;
+    _size = 0;
+
+    for (iterator it = arg.begin(); it != arg.end(); it++) {
+        add(*it);
+    }
 }
 
 template <class T>

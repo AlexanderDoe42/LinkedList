@@ -35,11 +35,13 @@ public:
 
     List();
     void add(T);
-    void remove(iterator&);
+    void add_front(T);
+    void remove(const iterator&);
     int size();
-    _iterator<T> begin();
-    _iterator<T> end();    //past the last element
-    _iterator<T> last();   //the actual last element
+    iterator begin() const;
+    iterator end() const;    //past the last element
+    iterator last() const;   //the actual last element
+    List<T>& operator=  (const List<T>&);
 
     ~List();
 };

@@ -18,8 +18,7 @@ main()
     }
     print(myList);
 
-    List<int> copiedList;
-    copiedList = myList;
+    List<int> copiedList = myList;
     print(copiedList);
 
     myList.add(43);
