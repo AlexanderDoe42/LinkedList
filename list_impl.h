@@ -49,6 +49,19 @@ List<T>::List()
 }
 
 template <class T>
+List<T>::List(const List<T>& arg)
+{
+    end_node = new Node<T>;
+    first_node = end_node;
+    last_node = end_node;
+    _size = 0;
+
+    for (iterator it = arg.begin(); it != arg.end(); it++) {
+        add(*it);
+    }
+}
+
+template <class T>
 void List<T>::add(T arg)
 {
     _size++;

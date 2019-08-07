@@ -28,12 +28,13 @@ class List
     int _size;
     Node<T> * first_node;
     Node<T> * last_node;
-    Node<T> * end_node;  //concatenates the last and first elements
+    Node<T> * end_node;  //concatenates the last and the first elements
 
 public:
     typedef _iterator<T> iterator;
 
     List();
+    List(const List<T>&);
     void add(T);
     void add_front(T);
     void remove(const iterator&);
