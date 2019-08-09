@@ -62,6 +62,19 @@ List<T>::List(const List<T>& arg)
 }
 
 template <class T>
+List<T>::List(List<T>&& arg)
+{
+    end_node = arg.end_node;
+    first_node = arg.first_node;
+    last_node = arg.last_node;
+    _size = arg._size;
+
+    arg.end_node = nullptr;
+    arg.first_node = nullptr;
+    arg.last_node = nullptr;
+}
+
+template <class T>
 void List<T>::add(T arg)
 {
     _size++;
@@ -160,6 +173,53 @@ List<T>& List<T>::operator=  (const List<T>& arg)
     for (iterator it = arg.begin(); it != arg.end(); it++) {
         add(*it);
     }
+
+    return *this;
+}
+
+template <class T>
+List<T>& List<T>::operator= (List<T>&& arg)
+{
+    std::cout << "move assignment\n";
+    last_node = first_node;
+    while (last_node != end_node) {
+        Node<T> * tmpNode = last_node->next_node;
+        delete last_node;
+        last_node = tmpNode;
+    }
+    delete end_node;
+
+    end_node = arg.end_node;
+    first_node = arg.first_node;
+    last_node = arg.last_node;
+    _size = arg._size;
+
+    arg.end_node = nullptr;
+    arg.first_node = nullptr;
+    arg.last_node = nullptr;
+
+    return *this;
+}
+
+template <class T>
+void List<T>::moveAssignment(List<T>& arg)
+{
+    last_node = first_node;
+    while (last_node != end_node) {
+        Node<T> * tmpNode = last_node->next_node;
+        delete last_node;
+        last_node = tmpNode;
+    }
+    delete end_node;
+
+    end_node = arg.end_node;
+    first_node = arg.first_node;
+    last_node = arg.last_node;
+    _size = arg._size;
+
+    arg.end_node = nullptr;
+    arg.first_node = nullptr;
+    arg.last_node = nullptr;
 }
 
 template <class T>

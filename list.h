@@ -35,6 +35,7 @@ public:
 
     List();
     List(const List<T>&);
+    List(List<T>&&);
     void add(T);
     void add_front(T);
     void remove(const iterator&);
@@ -43,6 +44,8 @@ public:
     iterator end() const;    //past the last element
     iterator last() const;   //the actual last element
     List<T>& operator=  (const List<T>&);
+    List<T>& operator=  (List<T>&&);
+    void moveAssignment(List<T>&);
 
     ~List();
 };

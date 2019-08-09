@@ -18,10 +18,14 @@ main()
     }
     print(myList);
 
-    List<int> copiedList = myList;
+    List<int> copiedList;
+    //copiedList = myList;
+    copiedList.moveAssignment(myList);
     print(copiedList);
 
-    myList.add(43);
-    print(myList);
+    //myList.add(43);
+    //print(myList);
     print(copiedList);
+
+
 }
