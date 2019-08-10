@@ -104,7 +104,7 @@ void List<T>::add_front(T arg)
         first_node->next_node = tmpNode;
     } else {
         first_node->next_node = end_node;
-        first_node = last_node;
+        last_node = first_node;
         end_node->previous_node = first_node;
     }
     first_node->value = arg;
@@ -180,7 +180,6 @@ List<T>& List<T>::operator=  (const List<T>& arg)
 template <class T>
 List<T>& List<T>::operator= (List<T>&& arg)
 {
-    std::cout << "move assignment\n";
     last_node = first_node;
     while (last_node != end_node) {
         Node<T> * tmpNode = last_node->next_node;

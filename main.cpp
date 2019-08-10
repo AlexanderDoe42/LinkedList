@@ -14,17 +14,17 @@ main()
 {
     List<int> myList;
     for (int i = 1; i <= 10; i++) {
-        myList.add(i);
+        myList.add_front(i);
     }
     print(myList);
 
     List<int> copiedList;
-    //copiedList = myList;
-    copiedList.moveAssignment(myList);
+    copiedList = myList;
+    //copiedList.moveAssignment(myList);
     print(copiedList);
 
-    //myList.add(43);
-    //print(myList);
+    myList.add_front(43);
+    print(myList);
     print(copiedList);
 
 
