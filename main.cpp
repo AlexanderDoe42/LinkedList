@@ -1,13 +1,12 @@
 #include <iostream>
-
 #include "list.h"
-
+using namespace std;
 void print(List<int>& arg)
 {
     for (List<int>::iterator it = arg.begin(); it != arg.end(); it++) {
-        std::cout << *it << ' ';
+        cout << *it << ' ';
     }
-    std::cout << '\n';
+    cout << '\n';
 }
 
 main()
